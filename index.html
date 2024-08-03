@@ -28,14 +28,31 @@
             name: "Hickory Dickory Dock",
             id: "hickory-dickory-dock",
             html: "<div class='nursery-rhymes' id='hickory-dickory-dock'><h3>Hickory Dickory Dock</h3><span>Hickory dickory dock, the mouse ran up the clock.</span><br><span>The clock struck one, the mouse ran down, hickory dickory dock.</span><br><br><span>Hickory dickory dock, the mouse ran up the clock.</span><br><span>The clock struck two, the mouse said “Boo!” hickory dickory dock</span><br><br><span>Hickory dickory dock, the mouse ran up the clock.</span><br><span>The clock struck three, the mouse said “Whee!” Hickory dickory dock.</span><br><br><span>Hickory dickory dock, the mouse ran up the clock.</span><br><span>The clock struck four, the mouse said “No more!” Hickory dickory dock.</span></div>"
+        },
+        {
+            name: "Im a Little Tea Pot",
+            id: "im-a-little-tea-pot",
+            html: "<div class='nursery-rhymes' id='im-a-little-tea-pot'><h3>I'm a Little Tea Pot</h3><span>I’m a little teapot, short and stout</span><br><span>Here’s my handle (place hand on hip) Here’s my spout (stick your other arm out straight)</span><br><span>When I get all steamed up, hear me shout</span><br><span>Just tip me over and pour me out (lean over with your spout arm)</span></div>"
+        },
+        {
+            name: "London Bridge is Falling Down",
+            id: "london-bridge-is-falling-down",
+            html: "<div class='nursery-rhymes' id='london-bridge-is-falling-down'><h3>London Bridge is Falling Down</h3><span>London Bridge is falling down,<span><br><span>Falling down, falling down.</span><br><span>London Bridge is falling down,</span><br><span>My fair lady.</span><br><br><span>Build it up with wood and clay,</span><br><span>Wood and clay, wood and clay,</span><br><span>Build it up with wood and clay,</span><br><span>My fair lady.</span><br><br><span>Wood and clay will wash away,</span><br><span>Wash away, wash away,</span><br><span>Wood and clay will wash away,</span><br><span>My fair lady.</span><br><br><span>Build it up with iron and steel,</span><br><span>Iron and steel, iron and steel,</span><br><span>Build it up with iron and steel,</span><br><span>My fair lady.</span><br><br><span>Iron and steel will bend and bow,</span><br><span>Bend and bow, bend and bow,</span><br><span>Iron and steel will bend and bow,</span><br><span>My fair lady.</span><br><br><span>Build it up with silver and gold,</span><br><span>Silver and gold, silver and gold,</span><br><span>Build it up with silver and gold,</span><br><span>My fair lady.</span></div>"
+        },
+        {
+            name: "Mary Had a Little Lamb",
+            id: "mary-had-a-little-lamb",
+            html: "<div class='nursery-rhymes' id='mary-had-a-little-lamb'><h3>Mary Had a Little Lamb</h3><span>Mary had a little lamb,</span><br><span>His fleece was white as snow,</span><br><span>And everywhere that Mary went,</span><br><span>The lamb was sure to go</span><br><br><span>He followed her to school one day,</span><br><span>Which was against the rule,</span><br><span>It made the children laugh and play,</span><br><span>To see a lamb at school.</span><br><br><span>And so the teacher turned him out,</span><br><span>But still he lingered near,</span><br><span>And waited patiently about,</span><br><span>Till Mary did appear.</span><br><br><span>\"What makes the lamb love Mary so?\"</span><br><span>The eager children cry;</span><br><span>\"Why, Mary loves the lamb, you know,\"</span><br><span>The teacher did reply.</span></div>"
+        },
+        {
+            name: "Humpty Dumpty",
+            id: "humpty-dumpty",
+            html: "<div class='nursery-rhymes' id='humpty-dumpty'><h3>Humpty Dumpty</h3><span>Humpty Dumpty sat on a wall,</span><br><span>Humpty Dumpty had a great fall,</span><br><span>All the king’s horses and all the king’s men,</span><br><span>Couldn’t put Humpty together again.</span></div>"
         }
     ]
+
     let nurseryRhymesHtml = "";
-    // nurseryRhymes.forEach((nurseryRhyme) => {
-    //     nurseryRhymesHtml += nurseryRhyme.html;
-    // })
-    // document.getElementById("nursery-rhymes-section").innerHTML = nurseryRhymesHtml
-    
+
     let inputBox = document.getElementById("nursery-rhyme-search-input");
     
     let searchInput = ""
@@ -44,9 +61,6 @@
         if(e.key == "Backspace"){
             if(searchInput.length == 1){
                 searchInput = ""
-                // nurseryRhymes.forEach((nurseryRhyme) => {
-                //     nurseryRhymesHtml += nurseryRhyme.html;
-                // })
                 nurseryRhymesHtml = "";
             } else {
                 searchInput = searchInput.substring(0, searchInput.length - 1);
@@ -74,7 +88,17 @@
     });
 
     document.getElementById("show-all-nursery-rhymes-button").addEventListener("click", function(e){
-        nurseryRhymes.forEach((nurseryRhyme) => {
+        nurseryRhymesHtml = "";
+        nurseryRhymes.sort((a, b) => {
+        if (a.name < b.name) {
+            return -1;
+        }
+        if (a.name > b.name) {
+            return 1;
+        }
+
+        return 0;
+        }).forEach((nurseryRhyme) => {
             nurseryRhymesHtml += nurseryRhyme.html;
         })
         document.getElementById("nursery-rhymes-section").innerHTML = nurseryRhymesHtml;
