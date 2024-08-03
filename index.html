@@ -1,0 +1,123 @@
+<html>
+    <body>
+        <h1>Nursery Rhymes</h1>
+        <div id="search-rhymes">
+            <h3>Search Nursery Rhymes</h3>
+            <input style="width: 250px;" placeholder="Type Nursery Rhyme Here" id="nursery-rhyme-search-input" type="text">
+            <button class="hide-or-show-buttons" id="show-all-nursery-rhymes-button">Show All</button>
+            <button class="hide-or-show-buttons" id="hide-all-nursery-rhymes-button">Hide All</button>
+        </div>
+        <div id="nursery-rhymes-section"></div>
+    </body>
+</html>
+<script>
+    let nurseryRhymes = [
+        {
+            name: "Twinkle Twinkle Little Star",
+            id: "twinkle-twinkle-little-star",
+            html: "<div class='nursery-rhymes' id='twinkle-twinkle-little-star'><h3>Twinkle Twinkle Little Star</h3><span>Twinkle, twinkle, little star, how I wonder what you are.</span><br><span>Up above the world so high, like a diamond in the sky. </span><br><span>Twinkle, twinkle, little star, how I wonder what you are.</span><br><br><span>When the blazing sun is set, and the grass with dew is wet.</span><br><span>Then you show your little light, twinkle, twinkle all the night.</span><br><span>Twinkle, twinkle little star, how I wonder what you are.</span><br><br><span>Then the traveler in the dark thanks you for your tiny spark.<br>How could he see where to go if you did not twinkle so?</span><br><span>Twinkle, twinkle little star, how I wonder what you are.</span><br><span>As your bright and tiny spark lights the traveler in the dark,<br>though I know not what you are, twinkle, twinkle, little star.</span><br><span>Twinkle, twinkle, little star, how I wonder what you are</span></div>"
+        },
+        {
+            name: "Hickory Dickory Dock",
+            id: "hickory-dickory-dock",
+            html: "<div class='nursery-rhymes' id='hickory-dickory-dock'><h3>Hickory Dickory Dock</h3><span>Hickory dickory dock, the mouse ran up the clock.</span><br><span>The clock struck one, the mouse ran down, hickory dickory dock.</span><br><br><span>Hickory dickory dock, the mouse ran up the clock.</span><br><span>The clock struck two, the mouse said “Boo!” hickory dickory dock</span><br><br><span>Hickory dickory dock, the mouse ran up the clock.</span><br><span>The clock struck three, the mouse said “Whee!” Hickory dickory dock.</span><br><br><span>Hickory dickory dock, the mouse ran up the clock.</span><br><span>The clock struck four, the mouse said “No more!” Hickory dickory dock.</span></div>"
+        }
+    ]
+    let nurseryRhymesHtml = "";
+    // nurseryRhymes.forEach((nurseryRhyme) => {
+    //     nurseryRhymesHtml += nurseryRhyme.html;
+    // })
+    // document.getElementById("nursery-rhymes-section").innerHTML = nurseryRhymesHtml
+    
+    let inputBox = document.getElementById("nursery-rhyme-search-input");
+    
+    let searchInput = ""
+    inputBox.addEventListener("keydown", function(e){
+        nurseryRhymesHtml = "";
+        if(e.key == "Backspace"){
+            if(searchInput.length == 1){
+                searchInput = ""
+                // nurseryRhymes.forEach((nurseryRhyme) => {
+                //     nurseryRhymesHtml += nurseryRhyme.html;
+                // })
+                nurseryRhymesHtml = "";
+            } else {
+                searchInput = searchInput.substring(0, searchInput.length - 1);
+                document.getElementById("nursery-rhymes-section").innerHTML = "";
+                let searchedRhymes = nurseryRhymes.filter((nurseryRhyme) => nurseryRhyme.name.toLowerCase().includes(searchInput.toLowerCase()))
+                searchedRhymes.forEach((nurseryRhyme) => {
+                    nurseryRhymesHtml += nurseryRhyme.html;
+                })
+            }
+        } else {
+            searchInput += e.key
+
+            if(searchInput.includes("CapsLock")){
+                searchInput = searchInput.substring(8,searchInput.length)
+            }
+            console.log(searchInput)
+
+            document.getElementById("nursery-rhymes-section").innerHTML = "";
+            let searchedRhymes = nurseryRhymes.filter((nurseryRhyme) => nurseryRhyme.name.toLowerCase().includes(searchInput.toLowerCase()))
+            searchedRhymes.forEach((nurseryRhyme) => {
+                nurseryRhymesHtml += nurseryRhyme.html;
+            })
+        }
+        document.getElementById("nursery-rhymes-section").innerHTML = nurseryRhymesHtml;
+    });
+
+    document.getElementById("show-all-nursery-rhymes-button").addEventListener("click", function(e){
+        nurseryRhymes.forEach((nurseryRhyme) => {
+            nurseryRhymesHtml += nurseryRhyme.html;
+        })
+        document.getElementById("nursery-rhymes-section").innerHTML = nurseryRhymesHtml;
+    })
+
+    document.getElementById("hide-all-nursery-rhymes-button").addEventListener("click", function(e){
+        document.getElementById("nursery-rhymes-section").innerHTML = "";
+    })
+</script>
+<style>
+    @media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    /* #froof-home-image {
+        height: 1000px;
+    }
+
+    #single-randomizer {
+        height: 500px;
+    }
+
+    #input-mode {
+        height: 50px;
+        width: 300px;
+        font-size: 20px;
+    }
+
+    .site-button {
+        height: 30px;
+        width: 250px;
+        font-size: 20px;
+        margin: 7px;
+    } */
+
+    .hide-or-show-buttons {
+        height: 30px;
+        width: 250px;
+        font-size: 20px;
+        margin: 7px;
+    }
+
+    #nursery-rhyme-search-input {
+        width: 225px;
+        height: 30px;
+    }
+    
+    /* .add-input-button {
+        font-size: 15px;
+        margin: 3px;
+    } */
+}
+</style>
