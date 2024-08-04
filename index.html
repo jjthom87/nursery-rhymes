@@ -1,20 +1,24 @@
 <html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    </head>
     <body>
+        <div class="containers" id="picture-container" style="margin-top: 15px;">
+            <img id="mal-and-jewel-picture" src="mal_and_jewel.jpeg" alt="">
+        </div>
         <h1>Nursery Rhymes</h1>
         <div id="container" style="display: flex;">
             <div class="containers" id="nursery-rhymes-container">
                 <div id="search-rhymes">
-                    <h3>Search Nursery Rhymes</h3>
-                    <input style="width: 250px;" placeholder="Type Nursery Rhyme Here" id="nursery-rhyme-search-input" type="text">
-                    <button class="hide-or-show-buttons" id="show-all-nursery-rhymes-button">Show All</button>
-                    <button class="hide-or-show-buttons" id="hide-all-nursery-rhymes-button">Hide All</button>
+                    <input placeholder="Search Nursery Rhyme Here" id="nursery-rhyme-search-input" type="text">
+                    <div style="display: flex;">
+                        <button class="hide-or-show-buttons" id="show-all-nursery-rhymes-button">Show All</button>
+                        <button class="hide-or-show-buttons" id="hide-all-nursery-rhymes-button">Hide All</button>
+                    </div>
                 </div>
-                <div id="nursery-rhymes-section"></div>
-            </div>
-            <div class="containers" id="picture-container">
-                <img src="mal_and_jewel.jpeg" style="height: 500px;" alt="">
             </div>
         </div>
+        <div id="nursery-rhymes-section"></div>
     </body>
 </html>
 <script>
@@ -109,6 +113,11 @@
     })
 </script>
 <style>
+
+    #mal-and-jewel-picture {
+        height: 500px;
+    }
+
     .containers {
         margin: 5px;
     }
@@ -117,40 +126,34 @@
         margin-left: 50px;
     }
 
-    @media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 568px)
-  and (-webkit-min-device-pixel-ratio: 2) {
-    /* #froof-home-image {
-        height: 1000px;
+    #nursery-rhyme-search-input {
+        width: 250px;
     }
 
-    #single-randomizer {
-        height: 500px;
-    }
-
-    #input-mode {
-        height: 50px;
-        width: 300px;
-        font-size: 20px;
-    }
- */
-
+  @media only screen 
+and (min-device-width: 320px) 
+and (max-device-width: 568px)
+and (-webkit-min-device-pixel-ratio: 2) {
     .hide-or-show-buttons {
         height: 30px;
-        width: 250px;
-        font-size: 20px;
-        margin: 7px;
+        width: 125px;
+        font-size: 15px;
+        margin-top: 5px;
     }
 
     #nursery-rhyme-search-input {
-        width: 225px;
+        width: 400px;
         height: 30px;
     }
-    
-    /* .add-input-button {
-        font-size: 15px;
-        margin: 3px;
-    } */
+
+    #mal-and-jewel-picture {
+        height: 150px;
+        width: 120px;
+    }
+
+    #picture-container {
+        margin-left: 15px;
+    }
+
 }
 </style>
