@@ -4,13 +4,14 @@
     </head>
     <body>
         <div class="containers" id="picture-container" style="margin-top: 15px;">
-            <img id="mal-and-jewel-picture" src="mal_and_jewel.jpeg" alt="">
+            <img id="mal-and-jewel-picture" class="family-pictures" src="mal_and_jewel.jpeg" alt="">
+            <img id="jamie-and-neal-picture" class="family-pictures" src="neal_jamie_and_jewel.jpeg" alt="">
         </div>
         <h1>Nursery Rhymes</h1>
         <div id="container" style="display: flex;">
             <div class="containers" id="nursery-rhymes-container">
                 <div id="search-rhymes">
-                    <input placeholder="Search Nursery Rhyme Here" id="nursery-rhyme-search-input" type="text">
+                    <input placeholder="Search Nursery Rhyme(s) Here" id="nursery-rhyme-search-input" type="text">
                     <div style="display: flex;">
                         <button class="hide-or-show-buttons" id="show-all-nursery-rhymes-button">Show All</button>
                         <button class="hide-or-show-buttons" id="hide-all-nursery-rhymes-button">Hide All</button>
@@ -114,8 +115,13 @@
 </script>
 <style>
 
-    #mal-and-jewel-picture {
+    /* #mal-and-jewel-picture {
         height: 500px;
+    } */
+
+    .family-pictures {
+        height: 300px;
+        margin: 5px;
     }
 
     .containers {
@@ -124,16 +130,18 @@
 
     #picture-container {
         margin-left: 50px;
+        display: table;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
     }
 
     #nursery-rhyme-search-input {
-        width: 250px;
+        width: 1000px;
+        height: 50px;
+        font-size: 25px;
     }
 
-  @media only screen 
-and (min-device-width: 320px) 
-and (max-device-width: 568px)
-and (-webkit-min-device-pixel-ratio: 2) {
     .hide-or-show-buttons {
         height: 30px;
         width: 125px;
@@ -141,18 +149,32 @@ and (-webkit-min-device-pixel-ratio: 2) {
         margin-top: 5px;
     }
 
+  @media only screen 
+and (min-device-width: 320px) 
+and (max-device-width: 568px)
+and (-webkit-min-device-pixel-ratio: 2) {
+
     #nursery-rhyme-search-input {
         width: 400px;
         height: 30px;
     }
 
-    #mal-and-jewel-picture {
+    /* #mal-and-jewel-picture {
+        height: 150px;
+        width: 120px;
+    } */
+
+    .family-pictures {
         height: 150px;
         width: 120px;
     }
 
     #picture-container {
         margin-left: 15px;
+        display: table;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
     }
 
 }
