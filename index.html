@@ -16,6 +16,7 @@
                         <button class="hide-or-show-buttons" id="show-all-nursery-rhymes-button">Show All</button>
                         <button class="hide-or-show-buttons" id="hide-all-nursery-rhymes-button">Hide All</button>
                     </div>
+                    <div id="nursery-rhymes-links"></div>
                 </div>
             </div>
         </div>
@@ -53,6 +54,16 @@
             name: "Humpty Dumpty",
             id: "humpty-dumpty",
             html: "<div class='nursery-rhymes' id='humpty-dumpty'><h3>Humpty Dumpty</h3><span>Humpty Dumpty sat on a wall,</span><br><span>Humpty Dumpty had a great fall,</span><br><span>All the king’s horses and all the king’s men,</span><br><span>Couldn’t put Humpty together again.</span></div>"
+        },
+        {
+            name: "The Itsy Bitsy Spider",
+            id: "the-itsy-bitsy-spider",
+            html: "<div class='nursery-rhymes' id='the-itsy-bitsy-spider'><h3>The Itsy Bitsy Spider</h3><span>The itsy bitsy spider crawled up the water spout.<span><br>Down came the rain, and washed the spider out.</span><br><span>Out came the sun, and dried up all the rain,</span><br><span>and the itsy bitsy spider went up the spout again.</span></div>"
+        },
+        {
+            name: "Row, Row, Row Your Boat",
+            id: "row-row-row-your-boat",
+            html: "<div class='nursery-rhymes id='row-row-row-your-boat'><h3>Row, Row, Row Your Boat</h3><span>Row, row, row your boat,</span><br><span>Gently down the stream,</span><br><span>Merrily, merrily, merrily, merrily</span><br><span>Life is but a dream.</span><br><span>Row, row, row your boat,</span><br><span>Gently down the stream,</span><br><span>If you see a crocodile,</span><br><span>Don’t forget to scream (Aaagh!)</span></div>"
         }
     ]
 
@@ -81,7 +92,6 @@
             if(searchInput.includes("CapsLock")){
                 searchInput = searchInput.substring(8,searchInput.length)
             }
-            console.log(searchInput)
 
             document.getElementById("nursery-rhymes-section").innerHTML = "";
             let searchedRhymes = nurseryRhymes.filter((nurseryRhyme) => nurseryRhyme.name.toLowerCase().includes(searchInput.toLowerCase()))
@@ -112,12 +122,30 @@
     document.getElementById("hide-all-nursery-rhymes-button").addEventListener("click", function(e){
         document.getElementById("nursery-rhymes-section").innerHTML = "";
     })
+
+    let nurseryRhymesLinksHtml = ""
+    nurseryRhymes.sort((a, b) => {
+    if (a.name < b.name) {
+        return -1;
+    }
+    if (a.name > b.name) {
+        return 1;
+    }
+
+    return 0;
+    }).forEach((nurseryRhyme) => {
+        nurseryRhymesLinksHtml += "<a class='nursery-rhyme-link' href='#"+nurseryRhyme.id+"'>"+nurseryRhyme.name+"</a>&nbsp;&nbsp;&nbsp;"
+    })
+    document.getElementById("nursery-rhymes-links").innerHTML = nurseryRhymesLinksHtml;
+
+    document.getElementsByTagName("body")[0].addEventListener("click", function(e){
+        if(e.target.className == "nursery-rhyme-link"){
+            let nurseryRhyme = nurseryRhymes.find(nurseryRhyme => nurseryRhyme.name == e.target.innerHTML)
+            document.getElementById("nursery-rhymes-section").innerHTML = nurseryRhyme.html
+        }
+    })
 </script>
 <style>
-
-    /* #mal-and-jewel-picture {
-        height: 500px;
-    } */
 
     .family-pictures {
         height: 300px;
@@ -158,11 +186,6 @@ and (-webkit-min-device-pixel-ratio: 2) {
         width: 400px;
         height: 30px;
     }
-
-    /* #mal-and-jewel-picture {
-        height: 150px;
-        width: 120px;
-    } */
 
     .family-pictures {
         height: 150px;
